@@ -45,6 +45,11 @@ footer { padding: 2em 1em; text-align: center; font-size: 0.5em; letter-spacing:
 .copyright-info:nth-child(even) { border-left: 1px solid #fffddf; border-right: 1px solid #fffddf; }
 
 
+@media only screen and (max-width: 1100px) {
+  .copyright-info { display: block; border: none !important; }
+}
+
+
 @media only screen and (max-width: 800px) {
   h1 { font-size: 0.8em; }
   h2 { font-size: 0.9em; }
@@ -56,5 +61,4 @@ footer { padding: 2em 1em; text-align: center; font-size: 0.5em; letter-spacing:
   .offset { display: initial; left: 0 !important; }
 
   footer { font-size: 0.4em; }
-  .copyright-info { display: block; border: none !important; }
 }
