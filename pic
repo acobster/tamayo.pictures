@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]
+do
+key="$1"
+
+case $key in
+    -b|--base-url)
+    BASE_URL="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    -t|--tall)
+    TALL="1"
+    shift # past argument
+    ;;
+    *)    # unknown option
+    POSITIONAL+=("$1") # save it in an array for later
+    shift # past argument
+    ;;
+esac
+done
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
+
+if [[ -z "$1" ]] ; then
+  >&2 echo "NO IMAGE FILE SPECIFIED, LOL"
+  exit 1
+fi
+
+PIC="$1"
+CAPTION=${2:-'__CAPTION__GOES__HERE__'}
+
+if [[ -z "$BASE_URL" ]] ; then
+	BASE_URL="https://res.cloudinary.com/tamayopictures/image/upload"
+fi
+
+if [[ "$TALL" ]] ; then
+	SRCSET=`cat <<-EOF
+${BASE_URL}/w_1000/XXX 1000w,
+${BASE_URL}/w_700/XXX 700w,
+${BASE_URL}/w_300/XXX 300w
+EOF
+`
+	ARTICLE_CLASS='tall'
+else
+	SRCSET=`cat <<-EOF
+${BASE_URL}/w_3000/XXX 3000w,
+${BASE_URL}/w_2000/XXX 2000w,
+${BASE_URL}/w_1500/XXX 1500w,
+${BASE_URL}/w_1000/XXX 1000w,
+${BASE_URL}/w_700/XXX 700w,
+${BASE_URL}/w_300/XXX 300w
+EOF
+`
+	ARTICLE_CLASS=''
+fi
+
+SRCSET=`echo "${SRCSET}" | sed "s/XXX/${PIC}/"`
+
+
+html=`cat <<-EOF
+
+    <article class="${ARTICLE_CLASS}">
+      <figure>
+        <img src="https://res.cloudinary.com/tamayopictures/image/upload/w_1000/${PIC}"
+          sizes="100vw"
+          srcset="${SRCSET}"
+          alt="${PIC} ${CAPTION}">
+        <figcaption>${CAPTION}</figcaption>
+      </figure>
+    </article>
+
+EOF
+`
+
+echo "$html"
