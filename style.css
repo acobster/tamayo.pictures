@@ -22,6 +22,7 @@ body { font-size: 40px; font-family: Palatino, serif; color: #fffddf; }
 h1, h2 { color: #e9b03d; font-family: Roboto, Helvetica, sans-serif; }
 h1 { width: 100%; margin: 0; text-align: center; letter-spacing: 0.1em; }
 h2 { padding: 0.5em 0; }
+.dot { color: #f95d3f; }
 
 a, a:hover, a:visited, a:active { color: #e9b03d; text-decoration: underline dotted; }
 a:hover { color: #ffd10d; }
