@@ -58,6 +58,7 @@ footer { padding: 2em 1em; text-align: center; font-size: 0.5em; letter-spacing:
   figcaption { width: 90%; font-size: 0.5em; }
 
   aside { width: 80em; max-width: 90%; margin-left: auto; font-size: 0.8em; }
+	.contains-offsets { margin-bottom: initial; }
   .offset { display: initial; left: 0 !important; }
 
   footer { font-size: 0.4em; }
