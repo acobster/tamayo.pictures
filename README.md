@@ -2,6 +2,14 @@
 
 Hand-coded static site for tamayo.pictures
 
+## Deploy the site
+
+The site is deployed manually to Fly.io.
+
+```
+fly deploy
+```
+
 ## Generate a new `<article>`
 
 1. Upload `example.png` to Cloudinary `tamayopictures` cloud
